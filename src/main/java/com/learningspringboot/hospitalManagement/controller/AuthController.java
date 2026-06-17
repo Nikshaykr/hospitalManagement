@@ -5,6 +5,7 @@ import com.learningspringboot.hospitalManagement.dto.LoginResponseDto;
 import com.learningspringboot.hospitalManagement.dto.SignupRequestDto;
 import com.learningspringboot.hospitalManagement.dto.SignupResponseDto;
 import com.learningspringboot.hospitalManagement.security.AuthService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<SignupResponseDto> login(@RequestBody SignupRequestDto signupRequestDto) {
+    public ResponseEntity<SignupResponseDto> signup(@RequestBody SignupRequestDto signupRequestDto) {
         return ResponseEntity.ok(authService.signup(signupRequestDto));
     }
 }

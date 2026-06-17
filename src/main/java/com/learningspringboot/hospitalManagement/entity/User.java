@@ -1,13 +1,16 @@
 package com.learningspringboot.hospitalManagement.entity;
 
 import com.learningspringboot.hospitalManagement.entity.type.AuthProviderType;
+import com.learningspringboot.hospitalManagement.entity.type.RoleType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -31,6 +34,10 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private AuthProviderType providerType;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    Set<RoleType> roles = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
